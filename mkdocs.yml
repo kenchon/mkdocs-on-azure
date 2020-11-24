@@ -1,0 +1,28 @@
+site_name: MkDocs を Azure Static Web Apps にデプロイしよう
+nav:
+  - Home: index.md
+  - MkDocs をセットアップする: mkdocs-setup.md
+  - Azure のセットアップ: azure-setup.md
+  - GitHub Actions のセットアップ: github-actions-setup.md
+theme:
+  name: material
+  language: ja
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - admonition
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kenchon
+    - icon: fontawesome/solid/book-open
+      link: https://kenchon.github.io/blog
+  search:
+    language: jp
