@@ -31,6 +31,7 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
       - name: Build
+        run: |
           mkdocs build --clean
       - name: Deploy
         id: deploy
