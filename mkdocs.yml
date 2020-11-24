@@ -1,7 +1,7 @@
 site_name: MkDocs を Azure Static Web Apps にデプロイしよう
 nav:
   - Home: index.md
-  - MkDocs をセットアップする: mkdocs-setup.md
+  - MkDocs のセットアップ: mkdocs-setup.md
   - Azure のセットアップ: azure-setup.md
   - GitHub Actions のセットアップ: github-actions-setup.md
 theme:
