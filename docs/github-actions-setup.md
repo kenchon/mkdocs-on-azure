@@ -1,27 +1,54 @@
-前の記事で Azure 上に Static Web Apps の作成までできました。
+> **想定所要時間：5分**
 
-この時点までで，GitHub のリポジトリには GitHub Actions のパイプライン設定ファイルが自動で生成されます。
+## ✍️　パイプラインの修正
 
-自動生成された設定ファイルのままでは，CI/CD を実行してくれる GitHub Actions の仮想マシンさんはビルド方法を知らないので，これを記述してあげる必要があります。
+前の記事で Azure 上に Static Web Apps のリソース作成を行い，リポジトリには GitHub Actions のパイプライン設定ファイルが自動で生成されました。
 
-## Python の依存モジュールのインストール
+しかし，自動生成された設定ファイルのままだとパイプラインは失敗します。理由は，以下の内容が不足しているからです：
 
-GitHub Actions に Python の環境をセットアップするために，以下の行を追加します:
+1. GitHub Actions の仮想マシンでの Python 実行環境セットアップ
+2. mkdocs と mkdocs-material のインストール
+3. ビルドして `/site` ディレクトリに HTML,CSS,JS を生成する処理
+
+ということで，`uses: actions/checkout@v2` 以降に，それぞれのジョブを以下のように追加してみました：
 
 ```yaml
-steps:
-- uses: actions/checkout@v2
-- uses: actions/setup-python@v2
-  with:
-    python-version: '3.9'
-      - name: Build
+    steps:
+      - uses: actions/checkout@v2
+
+      # 1. GitHub Actions の仮想マシンでの Python 実行環境セットアップ
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      # 2. mkdocs と mkdocs-material のインストール
+      - name: Install Python dependencies
         run: |
-          pip install mkdocs && pip install mkdocs-material && mkdocs build --clean
-      - name: Build And Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v0.0.1-preview
+          python -m pip install --upgrade pip
+          pip install mkdocs
+          pip install mkdocs-material
+
+      # 3. ビルドして `/site` ディレクトリに HTML,CSS,JS を生成する
+      - name: Build Web App
+        run: |
+          mkdocs build --clean
 ```
 
+## 🚀　push & deploy!
 
+それでは更新した内容で commit & push しましょう！
 
-## ビルド
+```bash
+git add .
+git commit -m "ci: Add steps to setup python and mkdocs"
+git push origin main
+```
+
+※ push すると自動でデプロイが走ります。
+
+GitHub Actions の画面を開くと，パイプラインが走っているのが見えます。
+
+![](images/github-actions-runnning.png)
+
+だいたい 2分ほどでデプロイが完了します。
