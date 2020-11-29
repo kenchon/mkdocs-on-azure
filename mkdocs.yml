@@ -1,13 +1,18 @@
-site_name: MkDocs を Azure Static Web Apps にデプロイしよう
+site_name: MkDocs を Azure Static Web Apps にデプロイする
 nav:
-  - Home: index.md
-  - MkDocs をセットアップする: mkdocs-setup.md
+  - これはなに？: index.md
+  - MkDocs のセットアップ: mkdocs-setup.md
   - Azure のセットアップ: azure-setup.md
   - GitHub Actions のセットアップ: github-actions-setup.md
+  - ぺージの確認: check-deployed-page.md
 theme:
   name: material
   language: ja
 markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.arithmatex:
