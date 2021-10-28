@@ -23,7 +23,7 @@ Azure Portal からリソース作成することもできますが，ここで
     !!! Note
         Functions コードはここでは使わないためスキップしますが，簡単に説明しておきます。
 
-        Azure Static Web Apps では Azure Functions のコードも取り扱うことができます（Functions との統合）。これにより，例えばウェブページに表示する値を Azure Functions で作成した API から動的に取得できるようにしたい！と思った時に，その API の実装とデプロイもまとめて行うことができるというものです。
+        Azure Static Web Apps では Azure Functions のコードも取り扱うことができます（Functions との統合）。これにより，例えばウェブページに表示する値を Azure Functions で作成した API から動的に取得できるようにしたい！と思った時に，その API の実装とデプロイもまとめて行うことができます。
 
 3. リソースを作成すると，GitHub Actions の設定ファイルがリモートリポジトリにコミットされます。
     
@@ -35,7 +35,7 @@ Azure Portal からリソース作成することもできますが，ここで
 
     すると，`.github/workflows/azure-static-web-apps-{app_name}.yml` というファイルがローカルリポジトリに pull されてくると思います。
     
-    しかし Azure が自動で作成してくれたパイプラインは失敗します！
+    しかし Azure が自動で作成してくれたパイプラインは失敗します！！
     
     ビルド方法や，Python の依存パッケージに関する情報が設定ファイルに記述されていないからです。
 
